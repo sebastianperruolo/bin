@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#sleep 5m
+
+source ~/bin/sp-config.cfg
+echo "Copy music from "$sp_origin" to "$sp_target
+
+if [ ! -d "$sp_target" ]; then
+	# Control will enter here if $DIRECTORY doesn't exist.
+	echo "nfs drive doesn't exists"
+	notify-send "nfs drive doesn't exists"
+	exit 1
+fi
+
+zenity --question --text="Should I sync your music?"
+
+if [ $? -ne 0 ]; then
+	echo ":("
+	notify-send ":("
+	exit 0
+fi
+
+echo "Syncing your music"
+notify-send "Syncing your music"
+
+NOW=$(date +"%Y-%m-%d")
+LOGFILE="$0-$NOW.log"
+
+rsync -avz $sp_origin "$sp_target" >> $LOGFILE
