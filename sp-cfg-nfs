@@ -1,0 +1,9 @@
+#!/bin/bash
+
+sudo apt-get install nfs-common
+
+sudo mkdir $2
+
+sudo tee -a /etc/fstab << EOF
+$1	$2       nfs     defaults        0       0
+EOF
