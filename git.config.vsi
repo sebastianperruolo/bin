@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git config --global user.email "sebastianp@vsisoft.com"
+git config --global user.name "Sebastian Perruolo"
